@@ -8,9 +8,16 @@ def get_crypto_price(crypto_id):
     data = response.json()
     return data['quotes']['USD']['price']
 
+st.title("암호 화폐 시세")
+
 #선택한 코인
-crypto_id = 'btc-bitcoin'
+crypto_id = st.selectbox(
+    "보고싶은 코인의 종류를 선택하세요.",
+    ("btc-bitcoin", "eth-ethereum", "doge-dogecoin"),
+)
 
 #가격 가져오기(USD)
 coin_data = get_crypto_price(crypto_id)
 print(coin_data)
+
+st.write(f"{crypto_id} : ${coin_data}")
